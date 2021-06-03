@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/moviesFragment"
+        android:title="Movies"
+        android:icon="@android:drawable/alert_light_frame"/>
+
+    <item android:id="@+id/savedMoviesFragment"
+        android:title="Saved Movies"
+        android:icon="@android:drawable/star_big_on"/>
+
+</menu>
