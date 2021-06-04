@@ -4,15 +4,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrofitroom.Resource
-import com.example.retrofitroom.data.repository.MovieRepositoryImpl
+import com.example.retrofitroom.domain.interactor.usecase.DeleateSavedMovieUseCase
 import com.example.retrofitroom.domain.interactor.usecase.GetMovieUseCase
+import com.example.retrofitroom.domain.interactor.usecase.GetSavedMovieUseCase
+import com.example.retrofitroom.domain.interactor.usecase.SaveMovieUseCase
 import com.example.retrofitroom.model.MoviesResponse
 import com.example.retrofitroom.model.Result
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class MovieViewModel (val moviesRepository: MovieRepositoryImpl,
-                      val getNewsUseCase : GetMovieUseCase) : ViewModel() {
+class MovieViewModel(
+    private val getMovieUseCase: GetMovieUseCase,
+    private val deleateSavedMovieUseCase: DeleateSavedMovieUseCase,
+    private val getSavedNewsUseCase: GetSavedMovieUseCase,
+    private val saveMovieUseCase: SaveMovieUseCase
+) : ViewModel() {
 
     val moviesNews: MutableLiveData<Resource<MoviesResponse>> = MutableLiveData()
 
@@ -28,7 +34,7 @@ class MovieViewModel (val moviesRepository: MovieRepositoryImpl,
 
     fun getBreakingNews() = viewModelScope.launch {
         moviesNews.postValue(Resource.Loading())
-        val response = getNewsUseCase.getMovieFromUseCase()
+        val response = getMovieUseCase.execute()
         moviesNews.postValue(handleBreakingNewsResponse(response))
     }
 
@@ -41,16 +47,13 @@ class MovieViewModel (val moviesRepository: MovieRepositoryImpl,
         return Resource.Error(response.message())
     }
 
-
     fun saveArticle(movie:Result) = viewModelScope.launch {
-        moviesRepository.upsert(movie)
+        saveMovieUseCase.execute(movie)
     }
 
-    fun getSavedMovies() = moviesRepository.getSavedMovie()
-
+    fun getSavedMovies() = getSavedNewsUseCase.execute()
 
     fun deleteArticle(movie: Result) = viewModelScope.launch {
-        moviesRepository.upsert(movie)
+        deleateSavedMovieUseCase.execute(movie)
     }
-
 }

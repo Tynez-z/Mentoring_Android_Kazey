@@ -1,4 +1,4 @@
-package com.example.retrofitroom.adapter
+package com.example.retrofitroom.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

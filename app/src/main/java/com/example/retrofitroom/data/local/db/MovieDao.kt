@@ -7,7 +7,7 @@ import com.example.retrofitroom.model.Result
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(movie: Result): Long
+    suspend fun insert(movie: Result)
 
     @Query("SELECT * FROM movies")
     fun getAllMovie(): LiveData<List<Result>>

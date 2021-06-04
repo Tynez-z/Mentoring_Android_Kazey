@@ -1,13 +1,15 @@
-package com.example.retrofitroom.data.repository
+package com.example.retrofitroom.domain.repository
 
 import androidx.lifecycle.LiveData
+import com.bumptech.glide.load.engine.Resource
 import com.example.retrofitroom.model.MoviesResponse
 import com.example.retrofitroom.model.Result
 import retrofit2.Response
 
-interface MovieRepositoryInterface {
+interface MovieRepository {
+
     suspend fun getMovie(): Response<MoviesResponse>
-    suspend fun upsert(movie : Result) : Long
+    suspend fun insert (movie : Result)
     suspend fun deleteMovie(movie: Result)
     fun getSavedMovie() : LiveData<List<Result>>
 }
