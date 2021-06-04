@@ -35,11 +35,13 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMoviesBinding.bind(view)
-        viewModel = ViewModelProvider(this, movieViewModelProviderFactory()).get(MovieViewModel::class.java)
+        movieViewModelProviderFactory = MovieViewModelProviderFactory()
+        viewModel = ViewModelProvider(this, movieViewModelProviderFactory(getMovieUseCase)).get(MovieViewModel::class.java)
         movieLocalDataSource = MovieLocalDataImpl()
         movieRemoteDataSource = MovieLocalDataImpl()
         movieRepository = MovieRepositoryImpl()
         getMovieUseCase = GetMovieUseCase()
+
 
         // viewModel.getBreakingNews()
         setupRecyclerView()
