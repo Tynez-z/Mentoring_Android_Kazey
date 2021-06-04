@@ -42,7 +42,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         movieRepository = MovieRepositoryImpl()
         getMovieUseCase = GetMovieUseCase()
 
-
         // viewModel.getBreakingNews()
         setupRecyclerView()
 
