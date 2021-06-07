@@ -1,11 +1,11 @@
-package com.example.retrofitroom.data.repository.dataImpl
+package com.example.retrofitroom.data.db.repository.dataImpl
 
 import androidx.lifecycle.LiveData
-import com.example.retrofitroom.data.repository.dataSource.MovieLocalDataSource
-import com.example.retrofitroom.data.local.db.MovieDao
+import com.example.retrofitroom.data.db.repository.dataSource.MovieLocalDataSource
+import com.example.retrofitroom.data.db.cache.MovieInterface
 import com.example.retrofitroom.model.Result
 
-class MovieLocalDataImpl(private val movieDao: MovieDao) : MovieLocalDataSource {
+class MovieLocalDataImpl(private val movieDao: MovieInterface) : MovieLocalDataSource {
 
     override fun getSavedMovie(): LiveData<List<Result>> {
         return movieDao.getAllMovie()

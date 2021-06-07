@@ -6,10 +6,8 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "movies")
-
 @Parcelize
 data class Result(
-
     @PrimaryKey
     val id: Int,
     val backdrop_path: String,

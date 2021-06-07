@@ -1,7 +1,6 @@
 package com.example.retrofitroom.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.bumptech.glide.load.engine.Resource
 import com.example.retrofitroom.model.MoviesResponse
 import com.example.retrofitroom.model.Result
 import retrofit2.Response

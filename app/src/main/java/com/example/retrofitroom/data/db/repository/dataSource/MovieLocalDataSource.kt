@@ -1,4 +1,4 @@
-package com.example.retrofitroom.data.repository.dataSource
+package com.example.retrofitroom.data.db.repository.dataSource
 
 import androidx.lifecycle.LiveData
 import com.example.retrofitroom.model.Result

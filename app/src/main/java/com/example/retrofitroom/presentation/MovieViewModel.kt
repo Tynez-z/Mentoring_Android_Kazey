@@ -47,7 +47,7 @@ class MovieViewModel(
         return Resource.Error(response.message())
     }
 
-    fun saveArticle(movie:Result) = viewModelScope.launch {
+    fun saveArticle(movie: Result) = viewModelScope.launch {
         saveMovieUseCase.execute(movie)
     }
 

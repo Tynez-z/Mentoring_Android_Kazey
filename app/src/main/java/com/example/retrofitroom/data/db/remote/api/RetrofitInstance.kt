@@ -1,4 +1,4 @@
-package com.example.retrofitroom.data.remote.api
+package com.example.retrofitroom.data.db.remote.api
 
 import com.example.retrofitroom.common.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient

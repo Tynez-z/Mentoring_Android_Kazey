@@ -1,4 +1,4 @@
-package com.example.retrofitroom.data.local.db
+package com.example.retrofitroom.data.db.cache
 
 import android.content.Context
 import androidx.room.Database
