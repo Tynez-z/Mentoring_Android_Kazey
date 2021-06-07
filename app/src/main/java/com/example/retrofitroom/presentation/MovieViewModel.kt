@@ -8,8 +8,8 @@ import com.example.retrofitroom.domain.interactor.usecase.DeleateSavedMovieUseCa
 import com.example.retrofitroom.domain.interactor.usecase.GetMovieUseCase
 import com.example.retrofitroom.domain.interactor.usecase.GetSavedMovieUseCase
 import com.example.retrofitroom.domain.interactor.usecase.SaveMovieUseCase
-import com.example.retrofitroom.model.MoviesResponse
-import com.example.retrofitroom.model.Result
+import com.example.retrofitroom.domain.model.MoviesResponse
+import com.example.retrofitroom.domain.model.Result
 import kotlinx.coroutines.launch
 import retrofit2.Response
 

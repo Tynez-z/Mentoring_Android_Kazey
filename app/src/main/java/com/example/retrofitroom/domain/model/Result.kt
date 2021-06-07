@@ -1,4 +1,4 @@
-package com.example.retrofitroom.model
+package com.example.retrofitroom.domain.model
 
 import android.os.Parcelable
 import androidx.room.Entity

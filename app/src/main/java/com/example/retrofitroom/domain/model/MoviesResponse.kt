@@ -1,4 +1,4 @@
-package com.example.retrofitroom.model
+package com.example.retrofitroom.domain.model
 
 data class MoviesResponse(
     val page: Int,

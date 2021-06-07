@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movie"
-            type="com.example.retrofitroom.model.Result" />
+            type="com.example.retrofitroom.domain.model.Result" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

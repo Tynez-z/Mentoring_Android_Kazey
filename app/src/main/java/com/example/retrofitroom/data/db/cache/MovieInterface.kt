@@ -1,7 +1,7 @@
 package com.example.retrofitroom.data.db.cache
 
 import androidx.lifecycle.LiveData
-import com.example.retrofitroom.model.Result
+import com.example.retrofitroom.domain.model.Result
 
 interface MovieInterface {
     suspend fun insert(movie: Result)

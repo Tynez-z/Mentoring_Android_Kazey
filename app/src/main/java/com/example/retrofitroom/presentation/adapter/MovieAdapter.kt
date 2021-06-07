@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitroom.R
 import com.example.retrofitroom.databinding.FragmentItemArticlePreviewBinding
-import com.example.retrofitroom.model.Result
+import com.example.retrofitroom.domain.model.Result
 import kotlinx.android.synthetic.main.fragment_item_article_preview.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ArticleViewHolder>() {

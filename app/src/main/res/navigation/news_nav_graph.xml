@@ -22,7 +22,7 @@
         android:label="ArticleFragment" >
         <argument
             android:name="result"
-            app:argType="com.example.retrofitroom.model.Result" />
+            app:argType="com.example.retrofitroom.domain.model.Result" />
     </fragment>
     <fragment
         android:id="@+id/savedMoviesFragment"
