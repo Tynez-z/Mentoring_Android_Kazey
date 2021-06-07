@@ -1,6 +1,6 @@
 package com.example.retrofitroom.data.remote.api
 
-import com.example.retrofitroom.Constants.Companion.BASE_URL
+import com.example.retrofitroom.common.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

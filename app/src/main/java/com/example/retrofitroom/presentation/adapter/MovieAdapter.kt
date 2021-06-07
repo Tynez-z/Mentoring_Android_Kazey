@@ -13,8 +13,6 @@ import kotlinx.android.synthetic.main.fragment_item_article_preview.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ArticleViewHolder>() {
 
-//    inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
     inner class ArticleViewHolder(private val itemViewBinding: FragmentItemArticlePreviewBinding) :
         RecyclerView.ViewHolder(itemViewBinding.root) {
 

@@ -3,7 +3,7 @@ package com.example.retrofitroom.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.retrofitroom.Resource
+import com.example.retrofitroom.common.Resource
 import com.example.retrofitroom.domain.interactor.usecase.DeleateSavedMovieUseCase
 import com.example.retrofitroom.domain.interactor.usecase.GetMovieUseCase
 import com.example.retrofitroom.domain.interactor.usecase.GetSavedMovieUseCase

@@ -1,4 +1,4 @@
-package com.example.retrofitroom
+package com.example.retrofitroom.common
 
 class Constants {
     companion object

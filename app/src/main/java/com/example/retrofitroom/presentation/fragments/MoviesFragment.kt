@@ -8,14 +8,19 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.retrofitroom.R
-import com.example.retrofitroom.Resource
-import com.example.retrofitroom.data.local.db.MovieDao
+import com.example.retrofitroom.common.Resource
+import com.example.retrofitroom.data.local.db.MovieDataBase
+import com.example.retrofitroom.data.remote.api.RetrofitInstance
 import com.example.retrofitroom.data.repository.MovieRepositoryImpl
 import com.example.retrofitroom.data.repository.dataImpl.MovieLocalDataImpl
+import com.example.retrofitroom.data.repository.dataImpl.MovieRemoteDataImpl
 import com.example.retrofitroom.data.repository.dataSource.MovieLocalDataSource
 import com.example.retrofitroom.data.repository.dataSource.MovieRemoteDataSource
 import com.example.retrofitroom.databinding.FragmentMoviesBinding
+import com.example.retrofitroom.domain.interactor.usecase.DeleateSavedMovieUseCase
 import com.example.retrofitroom.domain.interactor.usecase.GetMovieUseCase
+import com.example.retrofitroom.domain.interactor.usecase.GetSavedMovieUseCase
+import com.example.retrofitroom.domain.interactor.usecase.SaveMovieUseCase
 import com.example.retrofitroom.domain.repository.MovieRepository
 import com.example.retrofitroom.presentation.MovieViewModel
 import com.example.retrofitroom.presentation.MovieViewModelProviderFactory
@@ -28,6 +33,9 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     lateinit var movieAdapter: MovieAdapter
     lateinit var binding: FragmentMoviesBinding
     lateinit var getMovieUseCase: GetMovieUseCase
+    lateinit var getSavedMovieUseCase: GetSavedMovieUseCase
+    lateinit var saveMovieUseCase: SaveMovieUseCase
+    lateinit var deleateSavedMovieUseCase: DeleateSavedMovieUseCase
     lateinit var movieLocalDataSource: MovieLocalDataSource
     lateinit var movieRemoteDataSource: MovieRemoteDataSource
     lateinit var movieRepository: MovieRepository
@@ -35,14 +43,17 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMoviesBinding.bind(view)
-        movieViewModelProviderFactory = MovieViewModelProviderFactory()
-        viewModel = ViewModelProvider(this, movieViewModelProviderFactory(getMovieUseCase)).get(MovieViewModel::class.java)
-        movieLocalDataSource = MovieLocalDataImpl()
-        movieRemoteDataSource = MovieLocalDataImpl()
-        movieRepository = MovieRepositoryImpl()
-        getMovieUseCase = GetMovieUseCase()
+        val db = MovieDataBase.invoke(view.context)
+        movieLocalDataSource = MovieLocalDataImpl(db.getMovieDAO())
+        movieRemoteDataSource = MovieRemoteDataImpl(RetrofitInstance.api)
+        movieRepository = MovieRepositoryImpl(movieLocalDataSource, movieRemoteDataSource)
+        deleateSavedMovieUseCase = DeleateSavedMovieUseCase(movieRepository)
+        getSavedMovieUseCase = GetSavedMovieUseCase(movieRepository)
+        saveMovieUseCase = SaveMovieUseCase(movieRepository)
+        getMovieUseCase = GetMovieUseCase(movieRepository)
+        movieViewModelProviderFactory = MovieViewModelProviderFactory(deleateSavedMovieUseCase,getMovieUseCase,getSavedMovieUseCase,saveMovieUseCase)
+        viewModel = ViewModelProvider(this, movieViewModelProviderFactory).get(MovieViewModel::class.java)
 
-        // viewModel.getBreakingNews()
         setupRecyclerView()
 
         movieAdapter.setOnItemClickListener {
