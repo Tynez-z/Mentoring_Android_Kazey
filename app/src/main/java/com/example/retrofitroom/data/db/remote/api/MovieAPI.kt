@@ -1,6 +1,6 @@
 package com.example.retrofitroom.data.db.remote.api
 
-import com.example.retrofitroom.domain.model.MoviesResponse
+import com.example.retrofitroom.domain.entity.MoviesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +13,5 @@ interface MovieAPI : APIInterface {
     }
 
     @GET(GET_MOVIE)
-    override suspend fun getMovie(@Query(API_KEY) apiKey: String): Response<MoviesResponse>
+    override suspend fun getMovies(@Query(API_KEY) apiKey: String): Response<MoviesResponse>
 }

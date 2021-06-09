@@ -1,0 +1,14 @@
+package com.example.retrofitroom.domain.repository
+
+import androidx.lifecycle.LiveData
+import com.example.retrofitroom.domain.entity.MoviesResponse
+import com.example.retrofitroom.domain.entity.Result
+import retrofit2.Response
+
+interface MoviesRepository {
+    //TODO rename funcs
+    suspend fun getMovies(): Response<MoviesResponse>
+    suspend fun insert (movies : Result)
+    suspend fun deleteMovies(movies: Result)
+    fun getSavedMovies() : LiveData<List<Result>>
+}

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RetrofitRoom</string>
+    <string name="movie_saved">"Movie Saved Successfully"</string>
+    <string name="movie_deleted">"Successfully deleted"</string>
+    <string name="movies">Movies</string>
+    <string name="saved_movies">Saved Movies</string>
 </resources>

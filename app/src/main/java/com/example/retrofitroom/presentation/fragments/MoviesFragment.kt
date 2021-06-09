@@ -8,55 +8,56 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.retrofitroom.R
-import com.example.retrofitroom.common.Resource
 import com.example.retrofitroom.data.db.cache.MovieDataBase
 import com.example.retrofitroom.data.db.remote.api.RetrofitInstance
-import com.example.retrofitroom.data.db.repository.MovieRepositoryImpl
-import com.example.retrofitroom.data.db.repository.dataImpl.MovieLocalDataImpl
-import com.example.retrofitroom.data.db.repository.dataImpl.MovieRemoteDataImpl
-import com.example.retrofitroom.data.db.repository.dataSource.MovieLocalDataSource
-import com.example.retrofitroom.data.db.repository.dataSource.MovieRemoteDataSource
+import com.example.retrofitroom.data.db.repository.MoviesRepositoryImpl
+import com.example.retrofitroom.data.db.repository.dataImpl.MoviesLocalDataImpl
+import com.example.retrofitroom.data.db.repository.dataImpl.MoviesRemoteDataImpl
+import com.example.retrofitroom.data.db.repository.dataSource.MoviesLocalDataSource
+import com.example.retrofitroom.data.db.repository.dataSource.MoviesRemoteDataSource
 import com.example.retrofitroom.databinding.FragmentMoviesBinding
-import com.example.retrofitroom.domain.interactor.usecase.DeleateSavedMovieUseCase
-import com.example.retrofitroom.domain.interactor.usecase.GetMovieUseCase
-import com.example.retrofitroom.domain.interactor.usecase.GetSavedMovieUseCase
-import com.example.retrofitroom.domain.interactor.usecase.SaveMovieUseCase
-import com.example.retrofitroom.domain.repository.MovieRepository
-import com.example.retrofitroom.presentation.MovieViewModel
-import com.example.retrofitroom.presentation.MovieViewModelProviderFactory
-import com.example.retrofitroom.presentation.adapter.MovieAdapter
+import com.example.retrofitroom.domain.interactor.usecase.DeleteSavedMoviesUseCase
+import com.example.retrofitroom.domain.interactor.usecase.GetMoviesUseCase
+import com.example.retrofitroom.domain.interactor.usecase.GetSavedMoviesUseCase
+import com.example.retrofitroom.domain.interactor.usecase.SaveMoviesUseCase
+import com.example.retrofitroom.domain.repository.MoviesRepository
+import com.example.retrofitroom.presentation.MoviesViewModel
+import com.example.retrofitroom.presentation.MoviesViewModelProviderFactory
+import com.example.retrofitroom.presentation.adapter.MoviesAdapter
 
 class MoviesFragment : Fragment(R.layout.fragment_movies) {
-
-    lateinit var viewModel: MovieViewModel
-    lateinit var movieViewModelProviderFactory: MovieViewModelProviderFactory
-    lateinit var movieAdapter: MovieAdapter
+    lateinit var viewModel: MoviesViewModel
+    lateinit var moviesViewModelProviderFactory: MoviesViewModelProviderFactory
+    lateinit var moviesAdapter: MoviesAdapter
     lateinit var binding: FragmentMoviesBinding
-    lateinit var getMovieUseCase: GetMovieUseCase
-    lateinit var getSavedMovieUseCase: GetSavedMovieUseCase
-    lateinit var saveMovieUseCase: SaveMovieUseCase
-    lateinit var deleateSavedMovieUseCase: DeleateSavedMovieUseCase
-    lateinit var movieLocalDataSource: MovieLocalDataSource
-    lateinit var movieRemoteDataSource: MovieRemoteDataSource
-    lateinit var movieRepository: MovieRepository
+    lateinit var getMoviesUseCase: GetMoviesUseCase
+    lateinit var getSavedMoviesUseCase: GetSavedMoviesUseCase
+    lateinit var saveMoviesUseCase: SaveMoviesUseCase
+    lateinit var deleteSavedMoviesUseCase: DeleteSavedMoviesUseCase
+    lateinit var moviesLocalDataSource: MoviesLocalDataSource
+    lateinit var moviesRemoteDataSource: MoviesRemoteDataSource
+    lateinit var moviesRepository: MoviesRepository
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMoviesBinding.bind(view)
         val db = MovieDataBase.invoke(view.context)
-        movieLocalDataSource = MovieLocalDataImpl(db.getMovieDAO())
-        movieRemoteDataSource = MovieRemoteDataImpl(RetrofitInstance.api)
-        movieRepository = MovieRepositoryImpl(movieLocalDataSource, movieRemoteDataSource)
-        deleateSavedMovieUseCase = DeleateSavedMovieUseCase(movieRepository)
-        getSavedMovieUseCase = GetSavedMovieUseCase(movieRepository)
-        saveMovieUseCase = SaveMovieUseCase(movieRepository)
-        getMovieUseCase = GetMovieUseCase(movieRepository)
-        movieViewModelProviderFactory = MovieViewModelProviderFactory(deleateSavedMovieUseCase,getMovieUseCase,getSavedMovieUseCase,saveMovieUseCase)
-        viewModel = ViewModelProvider(this, movieViewModelProviderFactory).get(MovieViewModel::class.java)
+
+        moviesLocalDataSource = MoviesLocalDataImpl(db.getMovieDAO())
+        moviesRemoteDataSource = MoviesRemoteDataImpl(RetrofitInstance.api)
+        moviesRepository = MoviesRepositoryImpl(moviesLocalDataSource, moviesRemoteDataSource)
+
+        deleteSavedMoviesUseCase = DeleteSavedMoviesUseCase(moviesRepository)
+        getSavedMoviesUseCase = GetSavedMoviesUseCase(moviesRepository)
+        saveMoviesUseCase = SaveMoviesUseCase(moviesRepository)
+        getMoviesUseCase = GetMoviesUseCase(moviesRepository)
+
+        moviesViewModelProviderFactory = MoviesViewModelProviderFactory(deleteSavedMoviesUseCase,getMoviesUseCase,getSavedMoviesUseCase,saveMoviesUseCase)
+        viewModel = ViewModelProvider(this, moviesViewModelProviderFactory).get(MoviesViewModel::class.java)
 
         setupRecyclerView()
 
-        movieAdapter.setOnItemClickListener {
+        moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putParcelable("result", it)
             }
@@ -64,25 +65,16 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
 
         viewModel.moviesNews.observe(viewLifecycleOwner, Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    response.data?.let { newsResponse ->
-                        movieAdapter.differ.submitList(newsResponse.results)
-                    }
-                }
-                is Resource.Error -> {
-                    response.message?.let { message ->
-                        Log.e("TAG", "An error: $message")
-                    }
-                }
-                is Resource.Loading -> {
-                }
-            }
+            moviesAdapter.differ.submitList(response.results)
         })
+        viewModel.errorStateLiveData.observe(viewLifecycleOwner, Observer { error ->
+            Log.e("TAG", "Error: $error")
+        })
+
     }
 
     private fun setupRecyclerView() {
-        movieAdapter = MovieAdapter()
-        binding.rvMovies.adapter = movieAdapter
+        moviesAdapter = MoviesAdapter()
+        binding.rvMovies.adapter = moviesAdapter
     }
 }
