@@ -15,7 +15,7 @@ class RetrofitInstance {
             Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).client(client).build()
         }
         val api by lazy {
-            retrofit.create(MovieAPI::class.java)
+            retrofit.create(MoviesAPI::class.java)
         }
     }
 }

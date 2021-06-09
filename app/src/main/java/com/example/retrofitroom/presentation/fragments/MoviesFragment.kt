@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.retrofitroom.R
-import com.example.retrofitroom.data.db.cache.MovieDataBase
+import com.example.retrofitroom.data.db.cache.MoviesDataBase
 import com.example.retrofitroom.data.db.remote.api.RetrofitInstance
 import com.example.retrofitroom.data.db.repository.MoviesRepositoryImpl
 import com.example.retrofitroom.data.db.repository.dataImpl.MoviesLocalDataImpl
@@ -41,7 +41,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMoviesBinding.bind(view)
-        val db = MovieDataBase.invoke(view.context)
+        val db = MoviesDataBase.invoke(view.context)
 
         moviesLocalDataSource = MoviesLocalDataImpl(db.getMovieDAO())
         moviesRemoteDataSource = MoviesRemoteDataImpl(RetrofitInstance.api)

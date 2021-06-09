@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitroom.R
-import com.example.retrofitroom.data.db.cache.MovieDataBase
+import com.example.retrofitroom.data.db.cache.MoviesDataBase
 import com.example.retrofitroom.data.db.remote.api.RetrofitInstance
 import com.example.retrofitroom.data.db.repository.MoviesRepositoryImpl
 import com.example.retrofitroom.data.db.repository.dataImpl.MoviesLocalDataImpl
@@ -43,7 +43,7 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSavedMoviesBinding.bind(view)
-        val db = MovieDataBase.invoke(view.context)
+        val db = MoviesDataBase.invoke(view.context)
 
         moviesLocalDataSource = MoviesLocalDataImpl(db.getMovieDAO())
         moviesRemoteDataSource = MoviesRemoteDataImpl(RetrofitInstance.api)

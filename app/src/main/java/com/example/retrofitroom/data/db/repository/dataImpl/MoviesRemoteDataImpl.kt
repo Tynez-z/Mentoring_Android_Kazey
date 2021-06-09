@@ -5,8 +5,8 @@ import com.example.retrofitroom.data.db.repository.dataSource.MoviesRemoteDataSo
 import com.example.retrofitroom.domain.entity.MoviesResponse
 import retrofit2.Response
 
-class MoviesRemoteDataImpl (private val movieAPI: APIInterface) : MoviesRemoteDataSource {
+class MoviesRemoteDataImpl (private val moviesAPI: APIInterface) : MoviesRemoteDataSource {
     override suspend fun getMovies(): Response<MoviesResponse> {
-        return movieAPI.getMovies()
+        return moviesAPI.getMovies()
     }
 }

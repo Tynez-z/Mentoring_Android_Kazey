@@ -7,13 +7,13 @@ import androidx.room.RoomDatabase
 import com.example.retrofitroom.domain.entity.Result
 
 @Database(entities = [Result::class], version = 1)
-abstract class MovieDataBase : RoomDatabase() {
+abstract class MoviesDataBase : RoomDatabase() {
 
-    abstract fun getMovieDAO(): MovieDao
+    abstract fun getMovieDAO(): MoviesDao
 
     companion object {
         @Volatile
-        private  var instance : MovieDataBase? = null
+        private  var instance : MoviesDataBase? = null
         private  val lock = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(lock){
@@ -23,7 +23,7 @@ abstract class MovieDataBase : RoomDatabase() {
         private  fun createDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                MovieDataBase::class.java,
+                MoviesDataBase::class.java,
                 "article_db.db"
             ).build()
     }

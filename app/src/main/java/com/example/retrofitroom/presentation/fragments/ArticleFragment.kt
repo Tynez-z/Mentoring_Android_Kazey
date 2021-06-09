@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.retrofitroom.BR
 import com.example.retrofitroom.R
-import com.example.retrofitroom.data.db.cache.MovieDataBase
+import com.example.retrofitroom.data.db.cache.MoviesDataBase
 import com.example.retrofitroom.data.db.remote.api.RetrofitInstance
 import com.example.retrofitroom.data.db.repository.MoviesRepositoryImpl
 import com.example.retrofitroom.data.db.repository.dataImpl.MoviesLocalDataImpl
@@ -40,7 +40,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentArticleBinding.bind(view)
-        val db = MovieDataBase.invoke(view.context)
+        val db = MoviesDataBase.invoke(view.context)
 
         moviesLocalDataSource = MoviesLocalDataImpl(db.getMovieDAO())
         moviesRemoteDataSource = MoviesRemoteDataImpl(RetrofitInstance.api)

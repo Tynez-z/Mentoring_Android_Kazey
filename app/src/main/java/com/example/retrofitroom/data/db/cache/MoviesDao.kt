@@ -5,7 +5,7 @@ import androidx.room.*
 import com.example.retrofitroom.domain.entity.Result
 
 @Dao
-interface MovieDao : MovieInterface {
+interface MoviesDao : MoviesInterface {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     override suspend fun insert(movie: Result)
