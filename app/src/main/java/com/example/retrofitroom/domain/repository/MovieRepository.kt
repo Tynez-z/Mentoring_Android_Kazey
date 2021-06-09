@@ -6,7 +6,7 @@ import com.example.retrofitroom.domain.model.Result
 import retrofit2.Response
 
 interface MovieRepository {
-
+    //TODO rename funcs
     suspend fun getMovie(): Response<MoviesResponse>
     suspend fun insert (movie : Result)
     suspend fun deleteMovie(movie: Result)

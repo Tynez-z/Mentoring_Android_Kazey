@@ -26,6 +26,7 @@ import com.example.retrofitroom.presentation.MovieViewModelProviderFactory
 import com.example.retrofitroom.presentation.adapter.MovieAdapter
 import com.google.android.material.snackbar.Snackbar
 
+//TODO will update after learning dagger 2 (UseCase in ViewModel)
 class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
     lateinit var binding: FragmentSavedMoviesBinding
     lateinit var moviesAdapter: MovieAdapter

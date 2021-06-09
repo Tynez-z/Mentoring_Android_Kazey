@@ -11,13 +11,12 @@ abstract class MovieDataBase : RoomDatabase() {
 
     abstract fun getMovieDAO(): MovieDao
 
-    companion object
-    {
+    companion object {
         @Volatile
         private  var instance : MovieDataBase? = null
-        private  val Lock = Any()
+        private  val lock = Any()
 
-        operator fun invoke(context: Context) = instance ?: synchronized(Lock){
+        operator fun invoke(context: Context) = instance ?: synchronized(lock){
             instance ?: createDatabase(context).also { instance = it }
         }
 

@@ -42,20 +42,25 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentArticleBinding.bind(view)
         val db = MovieDataBase.invoke(view.context)
+
         movieLocalDataSource = MovieLocalDataImpl(db.getMovieDAO())
         movieRemoteDataSource = MovieRemoteDataImpl(RetrofitInstance.api)
         movieRepository = MovieRepositoryImpl(movieLocalDataSource, movieRemoteDataSource)
+
         deleateSavedMovieUseCase = DeleateSavedMovieUseCase(movieRepository)
         getSavedMovieUseCase = GetSavedMovieUseCase(movieRepository)
         saveMovieUseCase = SaveMovieUseCase(movieRepository)
         getMovieUseCase = GetMovieUseCase(movieRepository)
+
         movieViewModelProviderFactory = MovieViewModelProviderFactory(deleateSavedMovieUseCase,getMovieUseCase,getSavedMovieUseCase,saveMovieUseCase)
         viewModel = ViewModelProvider(this, movieViewModelProviderFactory).get(MovieViewModel::class.java)
+
         binding.apply {
             binding.setVariable(BR.movie, args.result) }
 
         binding.fab.setOnClickListener {
             viewModel.saveArticle(args.result)
+            //TODO use constants
             Snackbar.make(requireView(), "Movie Saved Successfully", Snackbar.LENGTH_SHORT).show() }
     }
 }

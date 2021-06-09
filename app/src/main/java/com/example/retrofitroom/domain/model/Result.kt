@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "movies")
 @Parcelize
+//TODO rename fields from @total_pages to CamelStyle - totalPages
 data class Result(
     @PrimaryKey
     val id: Int,

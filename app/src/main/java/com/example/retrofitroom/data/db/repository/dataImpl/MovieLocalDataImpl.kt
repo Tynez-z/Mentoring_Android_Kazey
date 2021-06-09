@@ -6,7 +6,6 @@ import com.example.retrofitroom.data.db.cache.MovieInterface
 import com.example.retrofitroom.domain.model.Result
 
 class MovieLocalDataImpl(private val movieDao: MovieInterface) : MovieLocalDataSource {
-
     override fun getSavedMovie(): LiveData<List<Result>> {
         return movieDao.getAllMovie()
     }

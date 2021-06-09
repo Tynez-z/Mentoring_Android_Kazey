@@ -13,6 +13,7 @@ class MovieRepositoryImpl(
     private val movieRemoteDataSource: MovieRemoteDataSource
 ) : MovieRepository {
 
+    //TODO rename methods
     override suspend fun getMovie(): Response<MoviesResponse> {
         return movieRemoteDataSource.getMovie()
     }
@@ -28,5 +29,4 @@ class MovieRepositoryImpl(
     override fun getSavedMovie(): LiveData<List<Result>> {
         return movieLocalDataSource.getSavedMovie()
     }
-
 }

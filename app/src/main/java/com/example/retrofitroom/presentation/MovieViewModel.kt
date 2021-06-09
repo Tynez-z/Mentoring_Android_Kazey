@@ -13,6 +13,7 @@ import com.example.retrofitroom.domain.model.Result
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
+//TODO rename viewModel
 class MovieViewModel(
     private val getMovieUseCase: GetMovieUseCase,
     private val deleateSavedMovieUseCase: DeleateSavedMovieUseCase,
@@ -26,13 +27,7 @@ class MovieViewModel(
         getBreakingNews()
     }
 
-//    fun getBreakingNews() = viewModelScope.launch {
-//        moviesNews.postValue(Resource.Loading())
-//        val response = moviesRepository.getMovie()
-//        moviesNews.postValue(handleBreakingNewsResponse(response))
-//    }
-
-    fun getBreakingNews() = viewModelScope.launch {
+    private fun getBreakingNews() = viewModelScope.launch {
         moviesNews.postValue(Resource.Loading())
         val response = getMovieUseCase.execute()
         moviesNews.postValue(handleBreakingNewsResponse(response))
@@ -47,6 +42,7 @@ class MovieViewModel(
         return Resource.Error(response.message())
     }
 
+    //TODO use in 2 fragments! WHY? what are you doing?
     fun saveArticle(movie: Result) = viewModelScope.launch {
         saveMovieUseCase.execute(movie)
     }

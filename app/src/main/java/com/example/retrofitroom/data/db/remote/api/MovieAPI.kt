@@ -6,6 +6,12 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MovieAPI : APIInterface {
-    @GET("/3/movie/popular")
-    override suspend fun getMovie(@Query("api_key") api_key: String): Response<MoviesResponse>
+
+    companion object{
+        const val GET_MOVIE = "/3/movie/popular"
+        const val API_KEY = "api_key"
+    }
+
+    @GET(GET_MOVIE)
+    override suspend fun getMovie(@Query(API_KEY) apiKey: String): Response<MoviesResponse>
 }
