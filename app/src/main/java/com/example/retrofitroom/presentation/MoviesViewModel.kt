@@ -10,8 +10,9 @@ import com.example.retrofitroom.domain.interactor.usecase.SaveMoviesUseCase
 import com.example.retrofitroom.domain.entity.MoviesResponse
 import com.example.retrofitroom.domain.entity.Result
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MoviesViewModel(
+class MoviesViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase,
     private val deleteSavedMoviesUseCase: DeleteSavedMoviesUseCase,
     private val getSavedMoviesUseCase: GetSavedMoviesUseCase,

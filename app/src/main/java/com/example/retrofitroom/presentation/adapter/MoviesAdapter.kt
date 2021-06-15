@@ -14,7 +14,6 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(private val itemViewBinding: FragmentItemArticlePreviewBinding) :
         RecyclerView.ViewHolder(itemViewBinding.root) {
-
         fun bindView(movieItem: Result) {
             itemViewBinding.apply {
                 movie = movieItem

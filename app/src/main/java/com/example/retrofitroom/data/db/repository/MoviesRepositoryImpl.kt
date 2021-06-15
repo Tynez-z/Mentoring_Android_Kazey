@@ -7,8 +7,11 @@ import com.example.retrofitroom.domain.repository.MoviesRepository
 import com.example.retrofitroom.domain.entity.MoviesResponse
 import com.example.retrofitroom.domain.entity.Result
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MoviesRepositoryImpl(
+@Singleton
+class MoviesRepositoryImpl @Inject constructor(
     private val moviesLocalDataSource: MoviesLocalDataSource,
     private val moviesRemoteDataSource: MoviesRemoteDataSource
 ) : MoviesRepository {
