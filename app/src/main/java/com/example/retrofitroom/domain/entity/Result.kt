@@ -9,7 +9,6 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "movies")
 @Parcelize
 data class Result(
-
     @PrimaryKey
     @SerializedName("id")
     val id: Int,

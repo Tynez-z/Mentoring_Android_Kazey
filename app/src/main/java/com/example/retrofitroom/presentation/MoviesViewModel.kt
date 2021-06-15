@@ -30,7 +30,7 @@ class MoviesViewModel @Inject constructor(
         val response = getMoviesUseCase.execute()
         val body = response.body()
         if (!response.isSuccessful) {
-            errorStateLiveData.postValue("Error")
+            errorStateLiveData.postValue("Error") //TODO error description in constants
             return@launch
         }
         moviesNews.postValue(body)
