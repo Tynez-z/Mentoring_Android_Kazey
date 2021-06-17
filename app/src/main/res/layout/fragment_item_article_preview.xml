@@ -16,7 +16,7 @@
         android:layout_margin="20dp"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_article_image"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -24,9 +24,10 @@
             android:src="@mipmap/ic_launcher_round"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundImgView"
             app:poster="@{movie.posterPath}">
 
-        </androidx.appcompat.widget.AppCompatImageView>
+        </com.google.android.material.imageview.ShapeableImageView>
 
         <LinearLayout
             android:layout_width="match_parent"

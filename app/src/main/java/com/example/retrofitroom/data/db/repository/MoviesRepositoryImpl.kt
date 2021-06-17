@@ -3,7 +3,6 @@ package com.example.retrofitroom.data.db.repository
 import androidx.lifecycle.LiveData
 import com.example.retrofitroom.data.db.repository.dataSource.MoviesLocalDataSource
 import com.example.retrofitroom.data.db.repository.dataSource.MoviesRemoteDataSource
-import com.example.retrofitroom.domain.repository.MoviesRepository
 import com.example.retrofitroom.domain.entity.MoviesResponse
 import com.example.retrofitroom.domain.entity.Result
 import retrofit2.Response

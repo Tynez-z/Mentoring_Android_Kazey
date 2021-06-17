@@ -3,10 +3,10 @@
 
     <item android:id="@+id/moviesFragment"
         android:title="@string/movies"
-        android:icon="@android:drawable/alert_light_frame"/>
+        android:icon="@drawable/ic_videoplayer"/>
 
     <item android:id="@+id/savedMoviesFragment"
         android:title="@string/saved_movies"
-        android:icon="@android:drawable/star_big_on"/>
+        android:icon="@drawable/ic_save"/>
 
 </menu>

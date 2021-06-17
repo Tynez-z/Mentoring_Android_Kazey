@@ -1,34 +1,40 @@
 package com.example.retrofitroom.presentation.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.retrofitroom.R
 import com.example.retrofitroom.common.RESULT_NAV
 import com.example.retrofitroom.databinding.FragmentMoviesBinding
-import com.example.retrofitroom.presentation.App
-import com.example.retrofitroom.presentation.MoviesViewModel
 import com.example.retrofitroom.presentation.adapter.MoviesAdapter
+import com.example.retrofitroom.presentation.viewmodel.MoviesViewModel
 
 class MoviesFragment() : BaseFragment(R.layout.fragment_movies) {
 
-    lateinit var viewModel: MoviesViewModel
     lateinit var moviesAdapter: MoviesAdapter
-    lateinit var binding: FragmentMoviesBinding
+    lateinit var fragmentMoviesBinding: FragmentMoviesBinding
+    private val viewModel: MoviesViewModel by lazy {
+        viewModel {
+            //TODO add logic in future (LifecycleOwner)
+        }
+    }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        App.appComponent.inject(this)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        fragmentMoviesBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        return fragmentMoviesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentMoviesBinding.bind(view)
-
-        viewModel = viewModel { viewModelProvider }
         setupRecyclerView()
 
         moviesAdapter.setOnItemClickListener {
@@ -47,7 +53,7 @@ class MoviesFragment() : BaseFragment(R.layout.fragment_movies) {
     }
     
         private fun setupRecyclerView() {
-        moviesAdapter = MoviesAdapter()
-        binding.rvMovies.adapter = moviesAdapter
-    }
+            moviesAdapter = MoviesAdapter()
+            fragmentMoviesBinding.rvMovies.adapter = moviesAdapter
+        }
 }

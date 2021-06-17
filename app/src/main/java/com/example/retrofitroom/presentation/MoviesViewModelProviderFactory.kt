@@ -2,24 +2,18 @@ package com.example.retrofitroom.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.retrofitroom.domain.interactor.usecase.DeleteSavedMoviesUseCase
-import com.example.retrofitroom.domain.interactor.usecase.GetMoviesUseCase
-import com.example.retrofitroom.domain.interactor.usecase.GetSavedMoviesUseCase
-import com.example.retrofitroom.domain.interactor.usecase.SaveMoviesUseCase
 import javax.inject.Inject
+import javax.inject.Provider
 
 class MoviesViewModelProviderFactory @Inject constructor(
-    private val deleteSavedMoviesUseCase: DeleteSavedMoviesUseCase,
-    private val getMoviesUseCase: GetMoviesUseCase,
-    private val getSavedNewsUseCase: GetSavedMoviesUseCase,
-    private val saveMoviesUseCase: SaveMoviesUseCase
-) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MoviesViewModel(
-            getMoviesUseCase,
-            deleteSavedMoviesUseCase,
-            getSavedNewsUseCase,
-            saveMoviesUseCase) as T
+    private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
+) :
+    ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        val creator = creators[modelClass] ?: creators.entries.firstOrNull {
+            modelClass.isAssignableFrom(it.key)
+        }?.value ?: throw IllegalArgumentException("unknown model class $modelClass")
+        return creator.get() as T
     }
 }

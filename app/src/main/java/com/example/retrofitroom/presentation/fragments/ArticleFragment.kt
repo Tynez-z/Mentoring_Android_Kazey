@@ -8,15 +8,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.retrofitroom.R
 import com.example.retrofitroom.databinding.FragmentArticleBinding
-import com.example.retrofitroom.presentation.MoviesViewModel
+import com.example.retrofitroom.presentation.viewmodel.ArticleViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class ArticleFragment : BaseFragment(R.layout.fragment_article) {
 
     private val args: ArticleFragmentArgs by navArgs()
     lateinit var fragmentArticleBinding: FragmentArticleBinding
-
-    private val viewModel: MoviesViewModel by lazy {
+    private val viewModel: ArticleViewModel by lazy {
         viewModel {
             //TODO add logic in future (LifecycleOwner)
         }

@@ -8,11 +8,11 @@ import com.example.retrofitroom.domain.entity.Result
 interface MoviesDao : MoviesInterface {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    override suspend fun insert(movie: Result)
+    override suspend fun insert(movies: Result)
 
     @Query("SELECT * FROM movies")
-    override fun getAllMovie(): LiveData<List<Result>>
+    override fun getAllMovies(): LiveData<List<Result>>
 
     @Delete
-    override suspend fun deleteMovie(movie: Result)
+    override suspend fun deleteMovies(movies: Result)
 }

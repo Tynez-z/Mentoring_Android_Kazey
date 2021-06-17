@@ -29,6 +29,6 @@ class LocalModule {
     @Singleton
     @Provides
     fun provideMoviesDao(db: MoviesDataBase): MoviesDao {
-        return db.getMovieDAO()
+        return db.getMoviesDAO()
     }
 }

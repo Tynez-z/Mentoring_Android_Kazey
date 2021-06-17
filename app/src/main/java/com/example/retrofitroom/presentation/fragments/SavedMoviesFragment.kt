@@ -1,33 +1,40 @@
 package com.example.retrofitroom.presentation.fragments
 
-import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitroom.R
 import com.example.retrofitroom.common.RESULT_NAV
 import com.example.retrofitroom.databinding.FragmentSavedMoviesBinding
-import com.example.retrofitroom.presentation.App
-import com.example.retrofitroom.presentation.MoviesViewModel
 import com.example.retrofitroom.presentation.adapter.MoviesAdapter
+import com.example.retrofitroom.presentation.viewmodel.SavedMoviesViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
-    lateinit var binding: FragmentSavedMoviesBinding
+    lateinit var fragmentSavedMoviesBinding: FragmentSavedMoviesBinding
     lateinit var moviesAdapter: MoviesAdapter
-    lateinit var viewModel: MoviesViewModel
+    private val viewModel: SavedMoviesViewModel by lazy {
+        viewModel {
+            //TODO add logic in future (LifecycleOwner)
+        }
+    }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        App.appComponent.inject(this)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        fragmentSavedMoviesBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        return fragmentSavedMoviesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSavedMoviesBinding.bind(view)
-        viewModel = viewModel { viewModelProvider }
         setupRecycleView()
 
         viewModel.getSavedMovies().observe(viewLifecycleOwner, { movies ->
@@ -70,12 +77,12 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
         }
 
         ItemTouchHelper(itemTouchHelperCallBack).apply {
-            attachToRecyclerView(binding.recyclerView)
+            attachToRecyclerView(fragmentSavedMoviesBinding.recyclerView)
         }
     }
 
     private fun setupRecycleView() {
         moviesAdapter = MoviesAdapter()
-        binding.recyclerView.adapter = moviesAdapter
+        fragmentSavedMoviesBinding.recyclerView.adapter = moviesAdapter
     }
 }
