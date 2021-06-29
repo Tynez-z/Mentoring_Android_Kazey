@@ -16,6 +16,7 @@ import com.example.retrofitroom.presentation.viewmodel.SavedMoviesViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
+
     lateinit var fragmentSavedMoviesBinding: FragmentSavedMoviesBinding
     lateinit var moviesAdapter: MoviesAdapter
     private val viewModel: SavedMoviesViewModel by lazy {

@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.retrofitroom.R
+import com.example.retrofitroom.common.ERROR
 import com.example.retrofitroom.common.RESULT_NAV
 import com.example.retrofitroom.databinding.FragmentMoviesBinding
 import com.example.retrofitroom.presentation.adapter.MoviesAdapter
@@ -28,7 +29,7 @@ class MoviesFragment() : BaseFragment(R.layout.fragment_movies) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         fragmentMoviesBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         return fragmentMoviesBinding.root
     }
@@ -48,7 +49,7 @@ class MoviesFragment() : BaseFragment(R.layout.fragment_movies) {
             moviesAdapter.differ.submitList(response.results)
         })
         viewModel.errorStateLiveData.observe(viewLifecycleOwner, Observer { error ->
-            Log.e("TAG", "Error: $error")
+            Log.e("TAG", ERROR + error)
         })
     }
     

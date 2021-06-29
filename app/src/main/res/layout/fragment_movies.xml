@@ -13,7 +13,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="@dimen/margin_32dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/rv_movies"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_movies"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/size_0dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,6 +30,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
