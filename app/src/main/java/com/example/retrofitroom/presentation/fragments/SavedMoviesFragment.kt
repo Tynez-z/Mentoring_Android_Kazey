@@ -78,12 +78,12 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
         }
 
         ItemTouchHelper(itemTouchHelperCallBack).apply {
-            attachToRecyclerView(fragmentSavedMoviesBinding.recyclerView)
+            attachToRecyclerView(fragmentSavedMoviesBinding.rvSaveMovies)
         }
     }
 
     private fun setupRecycleView() {
         moviesAdapter = MoviesAdapter()
-        fragmentSavedMoviesBinding.recyclerView.adapter = moviesAdapter
+        fragmentSavedMoviesBinding.rvSaveMovies.adapter = moviesAdapter
     }
 }

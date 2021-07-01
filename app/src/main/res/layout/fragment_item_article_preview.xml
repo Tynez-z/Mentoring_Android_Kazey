@@ -9,14 +9,14 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cv_CardView"
+        android:id="@+id/cvItemArticle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_20p"
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_article_image"
+            android:id="@+id/ivItemArticle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_img"
             android:scaleType="center"
@@ -33,19 +33,19 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/size_0dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/iv_article_image">
+            app:layout_constraintTop_toBottomOf="@id/ivItemArticle">
 
             <TextView
-                android:id="@+id/tv_title"
+                android:id="@+id/tvTitleArticle"
                 style="@style/styleTextTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:text="@{movie.title}"
-                app:layout_constraintTop_toBottomOf="@id/iv_article_image" />
+                app:layout_constraintTop_toBottomOf="@id/ivItemArticle" />
 
             <TextView
-                android:id="@+id/tv_description"
+                android:id="@+id/tvDescriptionArticle"
                 style="@style/styleTextDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 android:text="@{movie.overview}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+                app:layout_constraintTop_toBottomOf="@id/tvTitleArticle" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

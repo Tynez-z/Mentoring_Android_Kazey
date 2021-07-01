@@ -18,10 +18,6 @@ abstract class BaseFragment(val layoutId: Int) : Fragment(layoutId) {
         App.appComponent.inject(this)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     inline fun <reified T : ViewModel> viewModel(body: T.() -> Unit): T {
         val vm = ViewModelProvider(this, viewModelProvider)[T::class.java]
         vm.body()
