@@ -35,7 +35,7 @@ class ArticleFragment : BaseFragment(R.layout.fragment_article) {
 
         fragmentArticleBinding.movie = this.args.result
 
-        fragmentArticleBinding.fab.setOnClickListener {
+        fragmentArticleBinding.btnFabSaveMovie.setOnClickListener {
             viewModel.saveArticle(args.result)
             Snackbar.make(requireView(), R.string.movie_saved, Snackbar.LENGTH_SHORT).show()
         }

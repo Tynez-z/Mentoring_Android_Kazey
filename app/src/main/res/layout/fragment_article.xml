@@ -17,7 +17,7 @@
         tools:context=".DetailActivity">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/backdrop"
+            android:id="@+id/ivBackdrop"
             android:layout_width="@dimen/size_0dp"
             android:layout_height="@dimen/height_img"
             android:layout_marginStart="@dimen/margin_8dp"
@@ -31,7 +31,7 @@
             app:poster="@{movie.backdropPath}" />
 
         <TextView
-            android:id="@+id/describe"
+            android:id="@+id/tvDescribeArticle"
             style="@style/styleTextDescribe"
             android:layout_width="@dimen/size_0dp"
             android:layout_height="wrap_content"
@@ -41,10 +41,10 @@
             android:text="@{movie.overview}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/backdrop"/>
+            app:layout_constraintTop_toBottomOf="@id/ivBackdrop" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/btnFabSaveMovie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabSize="normal"
@@ -52,6 +52,7 @@
             android:layout_marginBottom="@dimen/margin_32dp"
             android:layout_marginEnd="@dimen/margin_32dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/icon_save_movie"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
