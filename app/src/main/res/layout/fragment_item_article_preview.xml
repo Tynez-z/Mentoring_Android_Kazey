@@ -25,7 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/roundImgView"
             app:poster="@{movie.posterPath}">
-
         </com.google.android.material.imageview.ShapeableImageView>
 
         <LinearLayout
@@ -37,7 +36,7 @@
 
             <TextView
                 android:id="@+id/tvTitleArticle"
-                style="@style/styleTextTitle"
+                style="@style/tvStyleTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -46,7 +45,7 @@
 
             <TextView
                 android:id="@+id/tvDescriptionArticle"
-                style="@style/styleTextDescription"
+                style="@style/tvStyleDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

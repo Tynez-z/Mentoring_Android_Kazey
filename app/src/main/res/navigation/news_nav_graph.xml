@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/news_nav_graph.xml"
     app:startDestination="@id/moviesFragment">
-
     <fragment
         android:id="@+id/moviesFragment"
         android:name="com.example.retrofitroom.presentation.fragments.MoviesFragment"

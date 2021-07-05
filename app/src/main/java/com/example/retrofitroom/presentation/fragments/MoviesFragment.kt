@@ -46,7 +46,7 @@ class MoviesFragment() : BaseFragment(R.layout.fragment_movies) {
         }
 
         viewModel.moviesNews.observe(viewLifecycleOwner, Observer { response ->
-            moviesAdapter.differ.submitList(response.results)
+            moviesAdapter.differ.submitList(response)
         })
         viewModel.errorStateLiveData.observe(viewLifecycleOwner, Observer { error ->
             Log.e("TAG", ERROR + error)

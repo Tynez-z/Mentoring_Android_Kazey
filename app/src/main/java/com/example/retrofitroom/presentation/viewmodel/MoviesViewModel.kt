@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrofitroom.common.ERROR
-import com.example.retrofitroom.domain.entity.MoviesResponse
+import com.example.retrofitroom.domain.entity.Result
 import com.example.retrofitroom.domain.interactor.usecase.GetMoviesUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,7 +13,7 @@ class MoviesViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase,
 ) : ViewModel() {
 
-    val moviesNews: MutableLiveData<MoviesResponse> = MutableLiveData()
+    val moviesNews: MutableLiveData<List<Result>> = MutableLiveData()
     val errorStateLiveData: MutableLiveData<String> = MutableLiveData()
 
     init {
@@ -27,6 +27,6 @@ class MoviesViewModel @Inject constructor(
             errorStateLiveData.postValue(ERROR)
             return@launch
         }
-        moviesNews.postValue(body)
+        moviesNews.postValue(body!!.results)
     }
 }

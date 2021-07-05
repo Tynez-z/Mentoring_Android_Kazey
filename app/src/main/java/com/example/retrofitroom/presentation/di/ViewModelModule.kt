@@ -2,10 +2,10 @@ package com.example.retrofitroom.presentation.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.retrofitroom.presentation.viewmodel.MoviesViewModel
 import com.example.retrofitroom.presentation.MoviesViewModelProviderFactory
 import com.example.retrofitroom.presentation.ViewModelKey
 import com.example.retrofitroom.presentation.viewmodel.ArticleViewModel
+import com.example.retrofitroom.presentation.viewmodel.MoviesViewModel
 import com.example.retrofitroom.presentation.viewmodel.SavedMoviesViewModel
 import dagger.Binds
 import dagger.Module
