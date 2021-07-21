@@ -38,6 +38,7 @@ class MoviesFragment : BaseFragment(R.layout.fragment_movies) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
+        //TODO use single fun
         moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putParcelable(RESULT_NAV, it)
@@ -45,11 +46,14 @@ class MoviesFragment : BaseFragment(R.layout.fragment_movies) {
             findNavController().navigate(R.id.action_moviesFragment_to_articleFragment, bundle)
         }
 
+        //TODO use single fun
         viewModel.moviesNews.observe(viewLifecycleOwner, Observer { response ->
             moviesAdapter.differ.submitList(response)
         })
+
+        //TODO use single fun
         viewModel.errorStateLiveData.observe(viewLifecycleOwner, Observer { error ->
-            Log.e("TAG", ERROR + error)
+            Log.e("TAG", ERROR + error) //TODO consts
         })
     }
     

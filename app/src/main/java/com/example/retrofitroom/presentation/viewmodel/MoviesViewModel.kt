@@ -22,11 +22,10 @@ class MoviesViewModel @Inject constructor(
 
     private fun getBreakingNews() = viewModelScope.launch {
         val response = getMoviesUseCase.getMovies()
-        val body = response.body()
         if (!response.isSuccessful) {
             errorStateLiveData.postValue(ERROR)
             return@launch
         }
-        moviesNews.postValue(body!!.results)
+        moviesNews.postValue(response.body()!!.results)
     }
 }

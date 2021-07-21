@@ -9,7 +9,6 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AppModule::class, ViewModelModule::class, LocalModule::class, RemoteModule::class])
-
 interface AppComponent {
     fun inject(moviesFragment: MoviesFragment)
     fun inject(articleFragment: ArticleFragment)

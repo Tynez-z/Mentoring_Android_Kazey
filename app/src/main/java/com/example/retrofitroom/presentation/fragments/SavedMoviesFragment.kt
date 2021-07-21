@@ -38,16 +38,19 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
         super.onViewCreated(view, savedInstanceState)
         setupRecycleView()
 
+        //TODO use single fun
         viewModel.getSavedMovies().observe(viewLifecycleOwner, { movies ->
             moviesAdapter.differ.submitList(movies)
         })
 
+        //TODO use single fun
         moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putParcelable(RESULT_NAV, it)
             }
             findNavController().navigate(R.id.action_savedMoviesFragment_to_articleFragment, bundle)
         }
+
         setupSwipeToDeleteFunction()
     }
 
@@ -69,6 +72,7 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
                 val article = moviesAdapter.differ.currentList[position]
                 viewModel.deleteArticle(article)
 
+                //TODO use extension
                 Snackbar.make(requireView(), R.string.movie_deleted, Snackbar.LENGTH_LONG).apply {
                     setAction(R.string.undo) {
                         viewModel.saveArticle(article)

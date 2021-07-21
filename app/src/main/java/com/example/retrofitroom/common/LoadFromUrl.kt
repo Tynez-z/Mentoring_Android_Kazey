@@ -5,8 +5,8 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
 @BindingAdapter(POSTER)
-    fun loadFromUrl(view: ImageView, url: String?) {
-        Glide.with(view)
-            .load(URL_IMAGE + url)
-            .into(view)
-    }
+fun loadFromUrl(view: ImageView, url: String?) {
+    Glide.with(view)
+        .load(URL_IMAGE + url)
+        .into(view)
+}
