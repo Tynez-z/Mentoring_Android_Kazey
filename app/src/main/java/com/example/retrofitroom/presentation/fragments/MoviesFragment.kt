@@ -15,7 +15,7 @@ import com.example.retrofitroom.databinding.FragmentMoviesBinding
 import com.example.retrofitroom.presentation.adapter.MoviesAdapter
 import com.example.retrofitroom.presentation.viewmodel.MoviesViewModel
 
-class MoviesFragment() : BaseFragment(R.layout.fragment_movies) {
+class MoviesFragment : BaseFragment(R.layout.fragment_movies) {
 
     lateinit var moviesAdapter: MoviesAdapter
     lateinit var fragmentMoviesBinding: FragmentMoviesBinding

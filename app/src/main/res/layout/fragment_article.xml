@@ -4,7 +4,6 @@
 
     <data>
         <import type="android.view.View" />
-
         <variable
             name="movie"
             type="com.example.retrofitroom.domain.entity.Result" />
