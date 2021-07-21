@@ -8,5 +8,5 @@ import javax.inject.Singleton
 
 @Singleton
 class GetSavedMoviesUseCase @Inject constructor (private val moviesRepository: MoviesRepository) {
-    fun execute(): LiveData<List<Result>> = moviesRepository.getSavedMovies()
+    fun savedMovies(): LiveData<List<Result>> = moviesRepository.getSavedMovies()
 }
