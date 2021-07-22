@@ -9,7 +9,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.retrofitroom.R
 import com.example.retrofitroom.databinding.FragmentArticleBinding
 import com.example.retrofitroom.presentation.viewmodel.ArticleViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class ArticleFragment : BaseFragment(R.layout.fragment_article) {
 
@@ -32,13 +31,11 @@ class ArticleFragment : BaseFragment(R.layout.fragment_article) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        saveMovies()
+    }
 
+    fun saveMovies() {
         fragmentArticleBinding.movie = this.args.result
-
-        //TODO use single fun and binding!
-        fragmentArticleBinding.btnFabSaveMovie.setOnClickListener {
-            viewModel.saveArticle(args.result)
-            Snackbar.make(requireView(), R.string.movie_saved, Snackbar.LENGTH_SHORT).show()
-        }
+        viewModel.saveArticle(args.result)
     }
 }

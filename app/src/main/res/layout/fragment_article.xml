@@ -4,9 +4,14 @@
 
     <data>
         <import type="android.view.View" />
+
         <variable
             name="movie"
             type="com.example.retrofitroom.domain.entity.Result" />
+
+        <variable
+            name="articleFragment"
+            type="com.example.retrofitroom.presentation.fragments.ArticleFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabSize="normal"
+            android:onClick="@{(view) -> articleFragment.saveMovies()}"
             android:src="@drawable/ic_downarrow"
             android:layout_marginBottom="@dimen/margin_32dp"
             android:layout_marginEnd="@dimen/margin_32dp"

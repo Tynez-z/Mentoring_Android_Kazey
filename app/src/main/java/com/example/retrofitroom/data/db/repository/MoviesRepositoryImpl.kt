@@ -19,8 +19,8 @@ class MoviesRepositoryImpl @Inject constructor(
         return moviesRemoteDataSource.getMovies()
     }
 
-    override suspend fun insert(movies: Result) {  //TODO rename insert what?
-        moviesLocalDataSource.insert(movies)
+    override suspend fun insertMovies(movies: Result) {
+        moviesLocalDataSource.insertMovies(movies)
     }
 
     override suspend fun deleteMovies(movies: Result) {

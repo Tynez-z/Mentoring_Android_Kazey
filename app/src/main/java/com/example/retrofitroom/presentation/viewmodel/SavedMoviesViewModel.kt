@@ -27,7 +27,7 @@ class SavedMoviesViewModel @Inject constructor(
     }
 
     private fun getBreakingNews() = viewModelScope.launch {
-        val response = getMoviesUseCase.getMovies()
+        val response = getMoviesUseCase.execute()
         if (!response.isSuccessful) {
             errorStateLiveData.postValue(ERROR)
             return@launch
@@ -36,12 +36,12 @@ class SavedMoviesViewModel @Inject constructor(
     }
 
     fun saveArticle(movie: Result) = viewModelScope.launch {
-        saveMoviesUseCase.saveMovie(movie)
+        saveMoviesUseCase.execute(movie)
     }
 
-    fun getSavedMovies() = getSavedMoviesUseCase.savedMovies()
+    fun getSavedMovies() = getSavedMoviesUseCase.execute()
 
     fun deleteArticle(movie: Result) = viewModelScope.launch {
-        deleteSavedMoviesUseCase.deleteMovies(movie)
+        deleteSavedMoviesUseCase.execute(movie)
     }
 }

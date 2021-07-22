@@ -10,8 +10,8 @@ class MoviesLocalDataImpl(private val movieDao: MoviesInterface) : MoviesLocalDa
         return movieDao.getAllMovies()
     }
 
-    override suspend fun insert(movies: Result) { //TODO rename insert what?
-        return movieDao.insert(movies)
+    override suspend fun insertMovies(movies: Result) {
+        return movieDao.insertMovies(movies)
     }
 
     override suspend fun deleteMovies(movies: Result) {

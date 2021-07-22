@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitroom.R
 import com.example.retrofitroom.common.RESULT_NAV
+import com.example.retrofitroom.common.action
+import com.example.retrofitroom.common.longSnackBar
 import com.example.retrofitroom.databinding.FragmentSavedMoviesBinding
 import com.example.retrofitroom.presentation.adapter.MoviesAdapter
 import com.example.retrofitroom.presentation.viewmodel.SavedMoviesViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
 
@@ -37,21 +38,24 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecycleView()
+        showSavedMovies()
+        showDescribeOfSavedMovie()
+        setupSwipeToDeleteFunction()
+    }
 
-        //TODO use single fun
+    private fun showSavedMovies() {
         viewModel.getSavedMovies().observe(viewLifecycleOwner, { movies ->
             moviesAdapter.differ.submitList(movies)
         })
+    }
 
-        //TODO use single fun
+    private fun showDescribeOfSavedMovie() {
         moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putParcelable(RESULT_NAV, it)
             }
             findNavController().navigate(R.id.action_savedMoviesFragment_to_articleFragment, bundle)
         }
-
-        setupSwipeToDeleteFunction()
     }
 
     private fun setupSwipeToDeleteFunction() {
@@ -59,11 +63,11 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
         ) {
+
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
+                target: RecyclerView.ViewHolder): Boolean {
                 return true
             }
 
@@ -71,16 +75,13 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
                 val position = viewHolder.adapterPosition
                 val article = moviesAdapter.differ.currentList[position]
                 viewModel.deleteArticle(article)
-
-                //TODO use extension
-                Snackbar.make(requireView(), R.string.movie_deleted, Snackbar.LENGTH_LONG).apply {
-                    setAction(R.string.undo) {
+                view?.longSnackBar(R.string.movie_deleted) {
+                    action(R.string.undo) {
                         viewModel.saveArticle(article)
                     }
-                }.show()
+                }
             }
         }
-
         ItemTouchHelper(itemTouchHelperCallBack).apply {
             attachToRecyclerView(fragmentSavedMoviesBinding.rvSaveMovies)
         }

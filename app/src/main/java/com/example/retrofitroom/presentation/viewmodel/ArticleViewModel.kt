@@ -19,12 +19,11 @@ class ArticleViewModel @Inject constructor(
     private val errorStateLiveData: MutableLiveData<String> = MutableLiveData()
 
     init {
-        getBreakingNews()
+        getMovies()
     }
 
-    //TODO renaming
-    private fun getBreakingNews() = viewModelScope.launch {
-        val response = getMoviesUseCase.getMovies()
+    private fun getMovies() = viewModelScope.launch {
+        val response = getMoviesUseCase.execute()
         if (!response.isSuccessful) {
             errorStateLiveData.postValue(ERROR)
             return@launch
@@ -33,6 +32,6 @@ class ArticleViewModel @Inject constructor(
     }
 
     fun saveArticle(movie: Result) = viewModelScope.launch {
-        saveMoviesUseCase.saveMovie(movie)
+        saveMoviesUseCase.execute(movie)
     }
 }

@@ -8,6 +8,6 @@ import retrofit2.Response
 interface MoviesRepository {
     fun getSavedMovies() : LiveData<List<Result>>
     suspend fun getMovies(): Response<MoviesResponse>
-    suspend fun insert (movies : Result) //TODO rename insert what?
+    suspend fun insertMovies(movies: Result)
     suspend fun deleteMovies(movies: Result)
 }

@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 class GetMoviesUseCase @Inject constructor (private val moviesRepository: MoviesRepository) {
-    suspend fun getMovies(): Response<MoviesResponse> {
+    suspend fun execute(): Response<MoviesResponse> {
         return moviesRepository.getMovies()
     }
 }
