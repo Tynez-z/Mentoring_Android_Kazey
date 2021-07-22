@@ -6,15 +6,13 @@ import com.example.retrofitroom.data.db.repository.dataSource.MoviesLocalDataSou
 import com.example.retrofitroom.domain.entity.Result
 
 class MoviesLocalDataImpl(private val movieDao: MoviesInterface) : MoviesLocalDataSource {
-    override fun getSavedMovies(): LiveData<List<Result>> {
-        return movieDao.getAllMovies()
-    }
 
-    override suspend fun insertMovies(movies: Result) {
-        return movieDao.insertMovies(movies)
-    }
+    override fun getSavedMovies(): LiveData<List<Result>> =
+        movieDao.getAllMovies()
 
-    override suspend fun deleteMovies(movies: Result) {
-        return movieDao.deleteMovies(movies)
-    }
+    override suspend fun insertMovies(movies: Result) =
+        movieDao.insertMovies(movies)
+
+    override suspend fun deleteMovies(movies: Result) =
+        movieDao.deleteMovies(movies)
 }

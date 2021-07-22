@@ -3,10 +3,12 @@ package com.example.retrofitroom.common
 const val UNKNOWN_MODEL_CLASS = "unknown model class"
 const val UNCHECKED_CAST = "UNCHECKED_CAST"
 const val TAG = "TAG"
+//TODO APIs, KEYs to gradle (security)
 const val API_KEY = "cfacbd1b17a84295a04a55d573daa740"
 const val BASE_URL = "https://api.themoviedb.org/"
 const val URL_IMAGE = "https://image.tmdb.org/t/p/original/"
 const val POSTER = "poster"
+//TODO not necessary to use .db
 const val NAME_OF_DB = "article_db.db"
 const val RESULT_NAV = "result"
 const val ERROR = "Error"

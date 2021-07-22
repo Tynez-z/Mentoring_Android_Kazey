@@ -18,8 +18,6 @@ class AppModule(private val context: Context) {
 
     @Singleton
     @Provides
-    fun provideRepository(moviesRemoteDataSource: MoviesRemoteDataSource,
-        moviesLocalDataSource: MoviesLocalDataSource): MoviesRepository {
-        return MoviesRepositoryImpl(moviesLocalDataSource, moviesRemoteDataSource)
-    }
+    fun provideRepository(moviesRemoteDataSource: MoviesRemoteDataSource, moviesLocalDataSource: MoviesLocalDataSource): MoviesRepository =
+        MoviesRepositoryImpl(moviesLocalDataSource, moviesRemoteDataSource)
 }

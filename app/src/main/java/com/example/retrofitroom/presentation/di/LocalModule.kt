@@ -16,19 +16,16 @@ class LocalModule {
 
     @Singleton
     @Provides
-    fun providesMovieLocalDataSource(dao: MoviesDao): MoviesLocalDataSource {
-        return MoviesLocalDataImpl(dao)
-    }
+    fun providesMovieLocalDataSource(dao: MoviesDao): MoviesLocalDataSource =
+        MoviesLocalDataImpl(dao)
 
     @Singleton
     @Provides
-    fun provideDatabase(context: Context): MoviesDataBase {
-        return Room.databaseBuilder(context, MoviesDataBase::class.java, NAME_OF_DB).build()
-    }
+    fun provideDatabase(context: Context): MoviesDataBase =
+        Room.databaseBuilder(context, MoviesDataBase::class.java, NAME_OF_DB).build()
 
     @Singleton
     @Provides
-    fun provideMoviesDao(db: MoviesDataBase): MoviesDao {
-        return db.getMoviesDAO()
-    }
+    fun provideMoviesDao(db: MoviesDataBase): MoviesDao =
+        db.getMoviesDao()
 }

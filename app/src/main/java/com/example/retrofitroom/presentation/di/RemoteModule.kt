@@ -37,13 +37,11 @@ class RemoteModule() {
 
     @Provides
     @Singleton
-    fun provideAPIInterface(retrofit: Retrofit): APIInterface {
-        return retrofit.create(MoviesAPI::class.java)
-    }
+    fun provideAPIInterface(retrofit: Retrofit): APIInterface =
+        retrofit.create(MoviesAPI::class.java)
 
     @Singleton
     @Provides
-    fun providesRemoteMovieDataSource(service: APIInterface): MoviesRemoteDataSource {
-        return MoviesRemoteDataImpl(service)
-    }
+    fun providesRemoteMovieDataSource(service: APIInterface): MoviesRemoteDataSource =
+        MoviesRemoteDataImpl(service)
 }

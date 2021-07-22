@@ -18,25 +18,23 @@ import com.example.retrofitroom.presentation.viewmodel.MoviesViewModel
 
 class MoviesFragment : BaseFragment(R.layout.fragment_movies) {
 
-    lateinit var moviesAdapter: MoviesAdapter
+    private val moviesAdapter = MoviesAdapter()
     lateinit var fragmentMoviesBinding: FragmentMoviesBinding
+
     private val viewModel: MoviesViewModel by lazy {
         viewModel {
             //TODO add logic in future (LifecycleOwner)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentMoviesBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         return fragmentMoviesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerView()
         getMovies()
         getMoviesErrorState()
@@ -44,19 +42,19 @@ class MoviesFragment : BaseFragment(R.layout.fragment_movies) {
     }
 
     private fun getMoviesErrorState() {
-        viewModel.errorStateLiveData.observe(viewLifecycleOwner, Observer { error ->
+        viewModel.errorStateLiveData.observe(viewLifecycleOwner, { error ->
+            //TODO do not use Logs, it is not security
             Log.e(TAG, ERROR + error)
         })
     }
 
     private fun getMovies() {
-        viewModel.moviesNews.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.moviesNews.observe(viewLifecycleOwner, { response ->
             moviesAdapter.differ.submitList(response)
         })
     }
 
     private fun setupRecyclerView() {
-        moviesAdapter = MoviesAdapter()
         fragmentMoviesBinding.rvMovies.adapter = moviesAdapter
     }
 

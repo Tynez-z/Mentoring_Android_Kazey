@@ -13,29 +13,29 @@ import com.example.retrofitroom.presentation.viewmodel.ArticleViewModel
 class ArticleFragment : BaseFragment(R.layout.fragment_article) {
 
     private val args: ArticleFragmentArgs by navArgs()
-    lateinit var fragmentArticleBinding: FragmentArticleBinding
+    private lateinit var fragmentArticleBinding: FragmentArticleBinding
+
     private val viewModel: ArticleViewModel by lazy {
         viewModel {
             //TODO add logic in future (LifecycleOwner)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentArticleBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         return fragmentArticleBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         saveMovies()
     }
 
     fun saveMovies() {
-        fragmentArticleBinding.movie = this.args.result
-        viewModel.saveArticle(args.result)
+        args.result.let { result ->
+            fragmentArticleBinding.movie = result
+            viewModel.saveArticle(result)
+        }
     }
 }

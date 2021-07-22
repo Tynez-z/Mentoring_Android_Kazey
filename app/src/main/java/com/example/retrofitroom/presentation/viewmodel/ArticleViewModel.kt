@@ -22,16 +22,18 @@ class ArticleViewModel @Inject constructor(
         getMovies()
     }
 
-    private fun getMovies() = viewModelScope.launch {
-        val response = getMoviesUseCase.execute()
-        if (!response.isSuccessful) {
-            errorStateLiveData.postValue(ERROR)
-            return@launch
+    private fun getMovies() =
+        viewModelScope.launch {
+            val response = getMoviesUseCase.execute()
+            if (!response.isSuccessful) {
+                errorStateLiveData.postValue(ERROR)
+                return@launch
+            }
+            moviesNews.postValue(response.body()!!.results)
         }
-        moviesNews.postValue(response.body()!!.results)
-    }
 
-    fun saveArticle(movie: Result) = viewModelScope.launch {
-        saveMoviesUseCase.execute(movie)
-    }
+    fun saveArticle(movie: Result) =
+        viewModelScope.launch {
+            saveMoviesUseCase.execute(movie)
+        }
 }

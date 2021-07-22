@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.retrofitroom.presentation.App
+import com.example.retrofitroom.App
 import javax.inject.Inject
 
 abstract class BaseFragment(val layoutId: Int) : Fragment(layoutId) {

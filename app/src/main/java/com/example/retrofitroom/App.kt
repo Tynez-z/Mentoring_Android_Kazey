@@ -1,4 +1,4 @@
-package com.example.retrofitroom.presentation
+package com.example.retrofitroom
 
 import android.app.Application
 import com.example.retrofitroom.presentation.di.*

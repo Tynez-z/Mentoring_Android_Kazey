@@ -12,16 +12,16 @@ import com.example.retrofitroom.domain.entity.Result
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ArticleViewHolder>() {
 
-    inner class ArticleViewHolder(private val itemViewBinding: FragmentItemArticlePreviewBinding) :
-        RecyclerView.ViewHolder(itemViewBinding.root) {
+    inner class ArticleViewHolder(private val itemViewBinding: FragmentItemArticlePreviewBinding) : RecyclerView.ViewHolder(itemViewBinding.root) {
+
         fun bindView(movieItem: Result) {
             itemViewBinding.apply {
                 movie = movieItem
-            }
 
-            itemViewBinding.root.setOnClickListener {
-                onItemClickListener?.let {
-                    it(movieItem)
+                root.setOnClickListener {
+                    onItemClickListener?.let {
+                        it(movieItem)
+                    }
                 }
             }
         }
@@ -34,23 +34,16 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ArticleViewHolder>() {
 
     val differ = AsyncListDiffer(this, differCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ArticleViewHolder(
-        DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.fragment_item_article_preview,
-            parent,
-            false
-        )
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ArticleViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.fragment_item_article_preview, parent, false))
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val movieItem = differ.currentList[position]
         holder.bindView(movieItem)
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
+    override fun getItemCount(): Int =
+        differ.currentList.size
 
     private var onItemClickListener: ((Result) -> Unit)? = null
 

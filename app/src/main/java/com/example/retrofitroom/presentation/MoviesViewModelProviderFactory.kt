@@ -7,6 +7,7 @@ import com.example.retrofitroom.common.UNKNOWN_MODEL_CLASS
 import javax.inject.Inject
 import javax.inject.Provider
 
+//TODO rename to ViewModelProviderFactory
 class MoviesViewModelProviderFactory @Inject constructor(
     private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) :

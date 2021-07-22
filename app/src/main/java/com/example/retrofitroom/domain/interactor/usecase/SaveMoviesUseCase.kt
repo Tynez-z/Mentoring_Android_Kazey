@@ -7,5 +7,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SaveMoviesUseCase @Inject constructor (private val moviesRepository: MoviesRepository) {
-    suspend fun execute(result: Result) = moviesRepository.insertMovies(result)
+
+    suspend fun execute(result: Result) =
+        moviesRepository.insertMovies(result)
 }

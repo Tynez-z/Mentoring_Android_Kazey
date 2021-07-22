@@ -18,25 +18,22 @@ import com.example.retrofitroom.presentation.viewmodel.SavedMoviesViewModel
 
 class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
 
-    lateinit var fragmentSavedMoviesBinding: FragmentSavedMoviesBinding
-    lateinit var moviesAdapter: MoviesAdapter
+    private lateinit var fragmentSavedMoviesBinding: FragmentSavedMoviesBinding
+    private val moviesAdapter = MoviesAdapter()
     private val viewModel: SavedMoviesViewModel by lazy {
         viewModel {
             //TODO add logic in future (LifecycleOwner)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentSavedMoviesBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         return fragmentSavedMoviesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRecycleView()
         showSavedMovies()
         showDescribeOfSavedMovie()
@@ -59,36 +56,29 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
     }
 
     private fun setupSwipeToDeleteFunction() {
-        val itemTouchHelperCallBack = object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ) {
+        val itemTouchHelperCallBack = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder): Boolean {
-                return true
-            }
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean =
+                true
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                val article = moviesAdapter.differ.currentList[position]
-                viewModel.deleteArticle(article)
-                view?.longSnackBar(R.string.movie_deleted) {
-                    action(R.string.undo) {
-                        viewModel.saveArticle(article)
+                moviesAdapter.differ.currentList[viewHolder.adapterPosition].let { article ->
+                    viewModel.deleteArticle(article)
+                    view?.longSnackBar(R.string.movie_deleted) {
+                        action(R.string.undo) {
+                            viewModel.saveArticle(article)
+                        }
                     }
                 }
             }
         }
+
         ItemTouchHelper(itemTouchHelperCallBack).apply {
             attachToRecyclerView(fragmentSavedMoviesBinding.rvSaveMovies)
         }
     }
 
     private fun setupRecycleView() {
-        moviesAdapter = MoviesAdapter()
         fragmentSavedMoviesBinding.rvSaveMovies.adapter = moviesAdapter
     }
 }

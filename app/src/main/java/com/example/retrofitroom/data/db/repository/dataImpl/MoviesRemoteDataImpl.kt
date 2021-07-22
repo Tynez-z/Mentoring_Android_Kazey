@@ -6,7 +6,7 @@ import com.example.retrofitroom.domain.entity.MoviesResponse
 import retrofit2.Response
 
 class MoviesRemoteDataImpl (private val moviesAPI: APIInterface) : MoviesRemoteDataSource {
-    override suspend fun getMovies(): Response<MoviesResponse> {
-        return moviesAPI.getMovies()
-    }
+
+    override suspend fun getMovies(): Response<MoviesResponse> =
+        moviesAPI.getMovies()
 }

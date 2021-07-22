@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    //margin
+    <!--margin-->
     <dimen name="margin_8dp">8dp</dimen>
     <dimen name="margin_20p">20dp</dimen>
     <dimen name="margin_32dp">32dp</dimen>
 
-    //size img
+    <!--size img-->
     <dimen name="height_img">250dp</dimen>
 
-    //size
+    <!--size-->
     <dimen name="size_0dp">0dp</dimen>
     <dimen name="size_56dp">56dp</dimen>
     <dimen name="size_160dp">160dp</dimen>
     <dimen name="size_250dp">250dp</dimen>
 
-    //tvSize
+    <!--tvSize-->
     <dimen name="text_size_18sp">18sp</dimen>
 </resources>

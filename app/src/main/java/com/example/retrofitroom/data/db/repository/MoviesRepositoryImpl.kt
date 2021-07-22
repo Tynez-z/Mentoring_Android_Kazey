@@ -15,19 +15,15 @@ class MoviesRepositoryImpl @Inject constructor(
     private val moviesRemoteDataSource: MoviesRemoteDataSource
 ) : MoviesRepository {
 
-    override suspend fun getMovies(): Response<MoviesResponse> {
-        return moviesRemoteDataSource.getMovies()
-    }
+    override suspend fun getMovies(): Response<MoviesResponse> =
+        moviesRemoteDataSource.getMovies()
 
-    override suspend fun insertMovies(movies: Result) {
+    override suspend fun insertMovies(movies: Result) =
         moviesLocalDataSource.insertMovies(movies)
-    }
 
-    override suspend fun deleteMovies(movies: Result) {
+    override suspend fun deleteMovies(movies: Result) =
         moviesLocalDataSource.deleteMovies(movies)
-    }
 
-    override fun getSavedMovies(): LiveData<List<Result>> {
-        return moviesLocalDataSource.getSavedMovies()
-    }
+    override fun getSavedMovies(): LiveData<List<Result>> =
+        moviesLocalDataSource.getSavedMovies()
 }
